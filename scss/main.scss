@@ -1,0 +1,27 @@
+@import './resets';
+@import './variables';
+
+body{
+    background-color: $primary-color;
+}
+
+.main{
+    width: 80%;
+    margin: 0 auto;
+
+    /* ANIDAMINETO */
+    /* Manera 1, identificando los elementos dentro de la clase en cuestion */
+    p{
+        font-weight: map-get($font-weights, bold );
+
+        &:hover{
+            color: #fff;
+        }
+    }
+    /* Manera 2, si usamos metodologia BEM, podemos omitir el nombre que se repite, en este caso main
+    &__paragraph{
+        font-weight: map-get($font-weights, bold );
+    }
+    */
+
+}
