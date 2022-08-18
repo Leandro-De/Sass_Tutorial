@@ -1,18 +1,46 @@
 @import './resets';
 @import './variables';
 
+/* Crear y retornar una funcion,  */
+@function weight($weight-name){
+    @return map-get($font-weights, $weight-name);
+}
+
+/* Similar a un componente es un conjunto de estilos donde se puede pasar partametros */
+@mixin flexCenter ($direction){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+/* condicional, similar a un boolean, cambia el estado de los estilos segun el parametro */
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+
+@mixin mobile {
+    @media(max-width: $mobile){
+        @content; /* el content pasara cuando el mixin sea llamado */
+    }
+}
+
 body{
     background-color: $primary-color;
 }
 
 .main{
+    @include flexCenter(row);
     width: 80%;
     margin: 0 auto;
 
     /* ANIDAMINETO */
     /* Manera 1, identificando los elementos dentro de la clase en cuestion */
-    p{
-        font-weight: map-get($font-weights, bold );
+    #{&}_paragraph1{
+        font-weight: weight(bold); /* llama a la funcion y le pasa el parametro */
 
         &:hover{
             color: #fff;
@@ -23,5 +51,19 @@ body{
         font-weight: map-get($font-weights, bold );
     }
     */
+    #{&}_paragraph2{
+        @extend .main_paragraph1;
 
+        &:hover{
+            color: blue;
+        }
+    }
+
+    @include mobile{
+        flex-direction: column;
+    }
+}
+
+.light{
+    @include theme($light-theme: false)
 }

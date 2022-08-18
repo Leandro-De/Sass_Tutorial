@@ -8,11 +8,27 @@
 /* VARIABLES */
 /* MAPS */
 /* Los maps es un conjunto de estilos dentro de una variable */
+/* Crear y retornar una funcion,  */
+/* Similar a un componente es un conjunto de estilos donde se puede pasar partametros */
+/* condicional, similar a un boolean, cambia el estado de los estilos segun el parametro */
 body {
   background-color: #ff8300;
 }
 
 .main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   width: 80%;
   margin: 0 auto;
   /* ANIDAMINETO */
@@ -24,11 +40,26 @@ body {
     */
 }
 
-.main p {
+.main .main_paragraph1, .main .main_paragraph2 {
   font-weight: 700;
+  /* llama a la funcion y le pasa el parametro */
 }
 
-.main p:hover {
+.main .main_paragraph1:hover, .main .main_paragraph2:hover {
   color: #fff;
+}
+
+.main .main_paragraph2:hover {
+  color: blue;
+}
+
+@media (max-width: 800px) {
+  .main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    /* el content pasara cuando el mixin sea llamado */
+  }
 }
 /*# sourceMappingURL=main.css.map */
